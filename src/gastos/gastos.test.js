@@ -1,13 +1,12 @@
 import registrarGasto from "./gastos.js";
 
 describe("Registro de Gastos", () => {
-  it("deberia devolver el gasto de 100", () => {
-    expect(registrarGasto(100)).toEqual(100);
-  });
-  it("Deberia devolver el valor que sea ingresado", () => {
-    expect(registrarGasto(50)).toEqual(50);
+  it("deberia devolver el monto 100", () => {
+    expect(registrarGasto("25/11/2023", "Compra comida", 100).monto).toEqual(100);
   });
 
-  
+  it("deberia devolver la fecha, descripcion y monto adecuados", () => {
+    expect(registrarGasto("25/11/2023", "Compra comida", 100)).toEqual({'fecha': "25/11/2023", 'descripcion': "Compra comida", 'monto': 100});
+  });
 });
 
