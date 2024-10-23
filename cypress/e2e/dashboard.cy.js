@@ -1,6 +1,6 @@
 describe('Dashboard Functionality', () => {
   beforeEach(() => {
-    cy.visit('src/dashboard/dashboard.html');  // Asegúrate de que la ruta sea correcta
+    cy.visit('/src/dashboard/dashboard.html');  // Asegúrate de que la ruta sea correcta
   });
 
   // Caso 1: Verificar que el dashboard muestra el mensaje de bienvenida correcto

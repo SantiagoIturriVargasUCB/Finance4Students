@@ -1,6 +1,6 @@
 describe("Registrar Gastos", () => {
     it("Muestra el monto necesario", () => {
-        cy.visit("/");
+        cy.visit("/src/gastos/gastos.html");
         cy.get("#fecha").type("2021-12-21");
         cy.get("#descripcion").type("Libros");
         cy.get("#monto").type(500);
@@ -10,7 +10,7 @@ describe("Registrar Gastos", () => {
 
 
     it("Muestra los datos de los gastos registrados", () => {
-      cy.visit("/");
+      cy.visit("/src/gastos/gastos.html");
       cy.get("#fecha").type("2021-12-21");
       cy.get("#descripcion").type("Comida");
       cy.get("#monto").type(100);

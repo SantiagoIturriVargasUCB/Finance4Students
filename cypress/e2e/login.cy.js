@@ -1,6 +1,6 @@
 describe('Login Functionality - Finance4Students', () => {
   beforeEach(() => {
-    cy.visit('src/login/login.html'); 
+    cy.visit('/src/LogIn/login.html'); 
   });
 
   // Caso 1: Log in exitoso con credenciales válidas
