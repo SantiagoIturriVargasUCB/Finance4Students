@@ -1,4 +1,4 @@
-import { authenticateUser } from './login';
+import { authenticateUser } from './authenticateUser';
 
 
 const loginForm = document.getElementById('loginForm');
