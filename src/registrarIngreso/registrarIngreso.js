@@ -21,7 +21,16 @@ class RegistroIngreso {
             throw new Error("Formato de fecha inválido. Usa 'dd/mm/yy'.");
         }
     }
+
+    anadirDescripcion(descripcion) {
+        if (!descripcion || descripcion.trim() === "") {
+            throw new Error("La descripción no puede estar vacía.");
+        }
+        this.descripcion = descripcion; 
+        return this.descripcion; 
+    }
 }
+
 
 export default RegistroIngreso;
 
