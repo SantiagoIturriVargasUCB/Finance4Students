@@ -6,6 +6,7 @@
   "scripts": {
     "start": "parcel index.html",
     "start:login": "parcel src/Login/login.html",
+    "start:dashboard": "parcel src/Dashboard/dashboard.html",
     "build": "parcel build index.html",
     "test": "jest --watch",
     "test-once": "jest --verbose --coverage",
