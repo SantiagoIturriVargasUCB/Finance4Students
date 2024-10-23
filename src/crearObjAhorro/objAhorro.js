@@ -1,3 +1,7 @@
-export function crearObjetivo(obj = "Vacaciones", monto = 1000, fecha = "01/11/2025") {
-    return [obj, monto, fecha];
+export function crearObjetivo(objName = "Vacaciones", mount = 1000, date = "01/11/2025") {
+    return {
+        objName: objName,
+        mount: mount,
+        date: date
+    };
 }
