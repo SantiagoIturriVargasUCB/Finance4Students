@@ -7,53 +7,51 @@ class RegistroIngreso {
     }
 
     anadirMonto(monto) {
+        if (monto <= 0) {
+            return { message: "El monto debe ser un número positivo." };
+        }
         this.monto=monto
         return this.monto; 
     }
 
     anadirFecha(fecha) {
-        const formatoFecha = /^\d{2}\/\d{2}\/\d{2}$/;  
-
-        if (formatoFecha.test(fecha)) {
-            this.fecha = fecha;  
-            return this.fecha;   
-        } else {
-            throw new Error("Formato de fecha inválido. Usa 'dd/mm/yy'.");
+        if (!fecha) {
+            return { message: "La fecha no puede estar vacía." };
         }
+        this.fecha = fecha; // Asignar la fecha
+        return this.fecha; 
     }
 
     anadirDescripcion(descripcion) {
-        if (!descripcion || descripcion.trim() === "") {
-            throw new Error("La descripción no puede estar vacía.");
+        if (!descripcion) {
+            return { message: "La descripción no puede estar vacía." };
         }
-        this.descripcion = descripcion; 
-        return this.descripcion; 
+        this.descripcion = descripcion; // Asignar la descripción
+        return this.descripcion;
     }
 
     anadirIngreso(monto, fecha, descripcion) {
-        if (typeof monto !== 'number' || monto <= 0) {
-            throw new Error("El monto debe ser un número positivo");
+        if (monto <= 0) {
+            return { message: "El monto debe ser un número positivo" };
         }
 
-        const formatoFecha = /^\d{2}\/\d{2}\/\d{2}$/;
-        if (!formatoFecha.test(fecha)) {
-            throw new Error("La fecha debe tener el formato dd/mm/aa");
+        if (!fecha) {
+            return { message: "La fecha no puede estar vacía" };
         }
 
-        if (typeof descripcion !== 'string' || descripcion.trim() === "") {
-            throw new Error("La descripción no puede estar vacía");
-        }
+        if (!descripcion) {
+            return { message: "La descripción no puede estar vacía" };
+        }   
+        this.monto = monto;
+        this.fecha = fecha;
+        this.descripcion = descripcion;
 
-        this.anadirMonto(monto);
-        this.anadirFecha(fecha);
-        this.anadirDescripcion(descripcion);
-
-        return { monto: this.monto, fecha: this.fecha, descripcion: this.descripcion };
+        return {monto: this.monto, fecha: this.fecha, descripcion: this.descripcion };
     }
 }
 
-
 export default RegistroIngreso;
+
 
 
 
