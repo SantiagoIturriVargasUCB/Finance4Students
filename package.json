@@ -6,6 +6,7 @@
   "scripts": {
     "start": "parcel index.html",
     "start:obj": "parcel src/crearObjAhorro/objetivos.html",
+    "start:all": "concurrently 'npm run start' 'npm run start:obj'",
     "build": "parcel build index.html",
     "test": "jest --watch",
     "test-once": "jest --verbose --coverage",
