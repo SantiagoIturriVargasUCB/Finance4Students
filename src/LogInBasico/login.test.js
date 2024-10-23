@@ -1,4 +1,4 @@
-import { authenticateUser } from './login';
+import { authenticateUser } from './authenticateUser';
 
 describe('Login Functionality', () => {
   test('should return true for valid email and password', () => {
