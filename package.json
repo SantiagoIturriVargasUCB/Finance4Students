@@ -5,7 +5,6 @@
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "start:ingresos": "parcel src/registrarIngreso/registroIngreso.html",
     "build": "parcel build index.html",
     "test": "jest --watch",
     "test-once": "jest --verbose --coverage",
