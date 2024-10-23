@@ -10,4 +10,9 @@ function anadirFecha(fecha){
 }
 }
 
-export {anadirIngreso, anadirFecha};
+function anadirDescripcion(descripcion){
+    return descripcion;
+}
+
+
+export {anadirIngreso, anadirFecha, anadirDescripcion};
