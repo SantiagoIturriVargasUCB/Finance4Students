@@ -1,9 +1,10 @@
-import { Gasto } from "../gastos/gastos";
-import RegistroIngreso from "../registrarIngreso/registrarIngreso";
+import { Gasto } from "../Gasto/Gasto";
+import { Ingreso } from "../Ingreso/ingreso";
 
 
 
-const registroIngresos = new RegistroIngreso();
+
+const registroIngresos = new Ingreso();
 const totalIngresos = registroIngresos.getTotalIngresos();
 
 const totalGastos = Gasto.devolverGastoTotal();
