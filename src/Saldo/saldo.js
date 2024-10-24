@@ -1,5 +1,3 @@
-import { Ingreso } from "../Ingreso/Ingreso.js";
-import { Gasto } from "../Gasto/Gasto.js";
 
 // Función para calcular y mostrar el saldo total disponible
 function cargarSaldoTotal() {

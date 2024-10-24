@@ -1,72 +1,51 @@
-import { Gasto } from "./Gasto.js";
+import { Gasto } from './Gasto';
 
-describe("Registro de Gastos", () => {
-  it("deberia devolver el monto 100", () => {
-    const gasto = new Gasto("25/11/2023", "Compra comida", 100);
-    expect(gasto.monto).toEqual(100);
-  });
+describe('Clase Gasto', () => {
+  
+  it('debería registrar un gasto correctamente', () => {
+    const gasto = new Gasto("2024-01-10", "Supermercado", 150);
+    const resultado = gasto.registrarGasto();
 
-  it("deberia devolver la fecha 31/01/2020", () => {
-    const gasto = new Gasto("31/01/2020", "Compra libros", 300);
-    expect(gasto.fecha).toEqual("31/01/2020");
-  });
-
-  it("deberia devolver la fecha, descripcion y monto adecuados", () => {
-    let fecha = "25/11/2023";
-    let desc = "Compra comida";
-    let monto = 100;
-    const gasto = new Gasto(fecha, desc, monto);
-    expect(gasto.registrarGasto()).toEqual({
-      'fecha': "25/11/2023", 
-      'descripcion': "Compra comida", 
-      'monto': 100});
-  });
-
-  it("debería devolver una fecha distinta", () => {
-    let fecha = "01/01/2024";
-    let desc = "Compra bebida";
-    let monto = 50;
-    const gasto = new Gasto(fecha, desc, monto);
-    expect(gasto.registrarGasto()).toEqual({
-      'fecha': "01/01/2024", 
-      'descripcion': "Compra bebida", 
-      'monto': 50
+    // Verificar que el gasto se haya registrado correctamente
+    expect(resultado).toEqual({
+      fecha: "2024-01-10",
+      descripcion: "Supermercado",
+      monto: 150
     });
   });
-});
 
-describe("Historial de gastos", () => {
-  beforeEach(() => {
-    Gasto.gastoTotal = 0;
-    Gasto.listaDeGastos = [];
-  });
-  it("Deberia devolver la suma de los gastos: 200", () => {
-    const gasto1 = new Gasto("25/11/2023", "Compra comida", 200);
-    gasto1.registrarGasto();
-    expect(Gasto.devolverGastoTotal()).toEqual(200);
+  it('debería devolver un mensaje de error si el monto es negativo', () => {
+    const gasto = new Gasto("2024-01-10", "Supermercado", -150);
+    const resultado = gasto.registrarGasto();
+
+    // Verificar que se devuelva un mensaje de error
+    expect(resultado).toEqual({ message: "El monto debe ser un número positivo." });
   });
 
-  it("Deberia devolver la suma de los gastos: 500", () => {
-    const gasto1 = new Gasto("09/09/2023", "Compra fruta", 500);
-    gasto1.registrarGasto();
-    expect(Gasto.devolverGastoTotal()).toEqual(500);
+  it('debería devolver un mensaje de error si el monto no es un número', () => {
+    const gasto = new Gasto("2024-01-10", "Supermercado", "abc");
+    const resultado = gasto.registrarGasto();
+
+    // Verificar que se devuelva un mensaje de error
+    expect(resultado).toEqual({ message: "El monto debe ser un número positivo." });
   });
 
-  it("Deberia devolver la suma de los gastos: 500", () => {
-    const gasto1 = new Gasto("09/09/2023", "Compra fruta", 500);
-    const gasto2 = new Gasto("20/09/2021", "Compra libros", 100)
-    gasto1.registrarGasto();
-    gasto2.registrarGasto();
-    expect(Gasto.devolverGastoTotal()).toEqual(600);
+  it('debería calcular correctamente el total de gastos', () => {
+    const gasto1 = new Gasto("2024-01-10", "Supermercado", 150);
+    const gasto2 = new Gasto("2024-01-15", "Alquiler", 500);
+    
+    const gastos = [gasto1.registrarGasto(), gasto2.registrarGasto()];
+
+    // Verificar que el total de los gastos sea correcto
+    const totalGastos = Gasto.devolverGastoTotal(gastos);
+    expect(totalGastos).toBe(650);
   });
 
-  it("Deberia devolver la suma de los gastos: 500", () => {
-    const gasto1 = new Gasto("09/09/2023", "Compra fruta", 500);
-    const gasto2 = new Gasto("20/09/2021", "Compra libros", 100)
-    gasto1.registrarGasto();
-    gasto2.registrarGasto();
-    expect(Gasto.obtenerGastos()).toEqual([{'fecha': "09/09/2023", 'descripcion': "Compra fruta", 'monto': 500}, {'fecha': "20/09/2021", 'descripcion': "Compra libros", 'monto': 100}]);
-  });
+  it('debería devolver 0 si no hay gastos registrados', () => {
+    const gastos = [];
 
-  
+    // Verificar que el total sea 0 cuando no hay gastos
+    const totalGastos = Gasto.devolverGastoTotal(gastos);
+    expect(totalGastos).toBe(0);
+  });
 });

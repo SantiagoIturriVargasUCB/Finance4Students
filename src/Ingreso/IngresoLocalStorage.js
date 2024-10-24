@@ -5,6 +5,8 @@ export class Ingreso {
         this.fecha = fecha;
         this.descripcion = descripcion;
 
+        this.totalIngresos = JSON.parse(localStorage.getItem('totalIngresos')) || 0;
+        this.historialIngresos = JSON.parse(localStorage.getItem('historialIngresos')) || [];
     }
 
     anadirMonto(monto) {
@@ -43,6 +45,8 @@ export class Ingreso {
         this.totalIngresos += monto;
         this.historialIngresos.push({ monto: this.monto, fecha: this.fecha, descripcion: this.descripcion });
 
+        localStorage.setItem('totalIngresos', JSON.stringify(this.totalIngresos));
+        localStorage.setItem('historialIngresos', JSON.stringify(this.historialIngresos));
 
         return { monto: this.monto, fecha: this.fecha, descripcion: this.descripcion };
     }

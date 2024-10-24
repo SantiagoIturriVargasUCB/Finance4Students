@@ -1,4 +1,4 @@
-import { Ingreso } from "./Ingreso";
+import { Ingreso } from "./ingreso";
 
 describe("Ingresos", () => {
 

@@ -1,9 +1,9 @@
-import { Ingreso } from "../Ingreso/Ingreso.js";
 import { Gasto } from "../Gasto/Gasto.js";
+import { Ingreso } from "../Ingreso/ingreso.js";
 
 describe("Cálculo de Saldo Total Disponible", () => {
   beforeEach(() => {
-    localStorage.clear();
+    // localStorage.clear();
   });
 
   it("debería calcular el saldo total cuando no hay ingresos ni gastos", () => {

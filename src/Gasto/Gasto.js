@@ -5,25 +5,26 @@ export class Gasto {
     this.monto = monto;
   }
 
+  // Método para registrar un nuevo gasto y guardarlo en LocalStorage
   registrarGasto() {
+    if (this.monto <= 0 || isNaN(this.monto)) {
+      console.warn("El monto debe ser un número positivo.");
+      return { message: "El monto debe ser un número positivo." };
+    }
+
     const nuevoGasto = {
       fecha: this.fecha,
       descripcion: this.descripcion,
-      monto: this.monto,
+      monto: this.monto
     };
 
-    const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
 
-    gastos.push(nuevoGasto);
 
-    localStorage.setItem('gastos', JSON.stringify(gastos));
 
     return nuevoGasto;
   }
 
   static devolverGastoTotal() {
-    const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
-    return gastos.reduce((total, gasto) => total + gasto.monto, 0);
+    return gastos.reduce((total, gasto) => total + parseFloat(gasto.monto), 0);
   }
 }
-
