@@ -1,16 +1,25 @@
-import { Gasto } from "../Gasto/Gasto";
-import { Ingreso } from "../Ingreso/ingreso";
+import { Ingreso } from "../Ingreso/Ingreso.js";
+import { Gasto } from "../Gasto/Gasto.js";
 
+// Función para calcular y mostrar el saldo total disponible
+function cargarSaldoTotal() {
+    // Obtener ingresos y gastos desde LocalStorage
+    const ingresos = JSON.parse(localStorage.getItem('historialIngresos')) || [];
+    const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
 
+    // Calcular el total de ingresos sumando los montos
+    const totalIngresos = ingresos.reduce((total, ingreso) => total + parseFloat(ingreso.monto), 0);
 
+    // Calcular el total de gastos sumando los montos
+    const totalGastos = gastos.reduce((total, gasto) => total + parseFloat(gasto.monto), 0);
 
-const registroIngresos = new Ingreso();
-const totalIngresos = registroIngresos.getTotalIngresos();
+    // Calcular el saldo total disponible
+    const saldoTotalDisponible = totalIngresos - totalGastos;
 
-const totalGastos = Gasto.devolverGastoTotal();
+    // Mostrar el saldo en la página
+    const saldoDiv = document.querySelector("#saldo-total");
+    saldoDiv.innerHTML = `<h2>Saldo Total Disponible: Bs. ${saldoTotalDisponible.toFixed(2)}</h2>`;
+}
 
-const saldoTotalDisponible = totalIngresos - totalGastos;
-
-const saldoDiv = document.querySelector("#saldo-total");
-
-saldoDiv.innerHTML = `<h2>Saldo Total Disponible: Bs. ${saldoTotalDisponible}</h2>`;
+// Llamar a la función cuando la página cargue
+document.addEventListener('DOMContentLoaded', cargarSaldoTotal);
