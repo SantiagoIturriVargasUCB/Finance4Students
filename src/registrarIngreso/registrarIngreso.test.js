@@ -30,4 +30,14 @@ describe("Ingresos", () => {
     });
 });
 
+it("Debe almacenar los ingresos en el historial", () => {
+    registro.anadirIngreso(100, "27/10/23", "Compra de libros");
+    registro.anadirIngreso(200, "28/10/23", "Venta de servicios");
+    
+    expect(registro.getHistorialIngresos()).toEqual([
+        { monto: 100, fecha: "27/10/23", descripcion: "Compra de libros" },
+        { monto: 200, fecha: "28/10/23", descripcion: "Venta de servicios" }
+    ]);
+});
+
 });

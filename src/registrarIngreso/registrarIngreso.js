@@ -4,6 +4,8 @@ class RegistroIngreso {
         this.monto = monto;
         this.fecha = fecha;
         this.descripcion = descripcion;
+        this.totalIngresos= 0;
+        this.historialIngresos = [];
     }
 
     anadirMonto(monto) {
@@ -18,7 +20,7 @@ class RegistroIngreso {
         if (!fecha) {
             return { message: "La fecha no puede estar vacía." };
         }
-        this.fecha = fecha; // Asignar la fecha
+        this.fecha = fecha; 
         return this.fecha; 
     }
 
@@ -26,7 +28,7 @@ class RegistroIngreso {
         if (!descripcion) {
             return { message: "La descripción no puede estar vacía." };
         }
-        this.descripcion = descripcion; // Asignar la descripción
+        this.descripcion = descripcion; 
         return this.descripcion;
     }
 
@@ -45,9 +47,26 @@ class RegistroIngreso {
         this.monto = monto;
         this.fecha = fecha;
         this.descripcion = descripcion;
+        this.totalIngresos += monto;
 
-        return {monto: this.monto, fecha: this.fecha, descripcion: this.descripcion };
+        this.historialIngresos.push({
+            monto: this.monto,
+            fecha: this.fecha,
+            descripcion: this.descripcion
+        });
+
+        return {monto: this.monto, fecha: this.fecha, descripcion: this.descripcion};
     }
+
+    getTotalIngresos(){
+        return this.totalIngresos
+    }
+
+    getHistorialIngresos() {
+        return this.historialIngresos; 
+    }
+
+
 }
 
 export default RegistroIngreso;
