@@ -1,4 +1,4 @@
-class Gasto {
+export class Gasto {
   constructor(fecha, descripcion, monto) {
     this.fecha = fecha;
     this.descripcion = descripcion;
@@ -30,4 +30,4 @@ class Gasto {
 
 }
 
-export default Gasto;
+

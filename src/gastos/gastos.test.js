@@ -1,4 +1,4 @@
-import Gasto from "./gastos.js";
+import { Gasto } from "./gastos.js";
 
 describe("Registro de Gastos", () => {
   it("deberia devolver el monto 100", () => {

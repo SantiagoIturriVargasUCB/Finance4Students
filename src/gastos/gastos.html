@@ -7,14 +7,17 @@
     <h1>Registrar Gastos</h1>
     <form id="registro-gasto-form">
       <label for="fecha">Fecha:</label>
-      <input type="date" id="fecha">
+      <input type="date" id="fecha" required>
       <label for="descripcion">Descripción:</label>
-      <input type="text" id="descripcion">
+      <input type="text" id="descripcion" required>
       <label for="monto">Monto:</label>
-      <input type="number" id="monto">
+      <input type="number" id="monto" required>
       <input type="submit" value="Registrar" id="registrar-button">
     </form>
     <div id="resultado-div"></div>
+
+    <button id="mostrar-gastos-button" type="button">Mostrar Todos los Gastos</button>
+    <div id="lista-gastos-div"></div>
 
     <script type="module" src="presenter.js"></script>
   </body>
