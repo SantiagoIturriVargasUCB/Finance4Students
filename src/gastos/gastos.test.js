@@ -51,6 +51,13 @@ describe("Historial de gastos", () => {
     expect(Gasto.devolverGastoTotal()).toEqual(500);
   });
 
+  it("Deberia devolver la suma de los gastos: 500", () => {
+    const gasto1 = new Gasto("09/09/2023", "Compra fruta", 500);
+    const gasto2 = new Gasto("20/09/2021", "Comopra libros", 100)
+    gasto1.registrarGasto();
+    gasto2.registrarGasto();
+    expect(Gasto.devolverGastoTotal()).toEqual(600);
+  });
 
   
 });

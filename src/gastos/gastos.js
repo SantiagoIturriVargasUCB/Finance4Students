@@ -9,7 +9,7 @@ class Gasto {
 
   registrarGasto() {
 
-    Gasto.gastoTotal = this.monto;
+    Gasto.gastoTotal += this.monto;
     return {
       'fecha': this.fecha,
       'descripcion': this.descripcion,
