@@ -1,4 +1,4 @@
-import { Gasto } from "./gastos.js";
+import { Gasto } from "./Gasto.js";
 
 const fechaInput = document.querySelector("#fecha");
 const descripcionInput = document.querySelector("#descripcion");
