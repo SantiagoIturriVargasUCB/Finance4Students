@@ -5,8 +5,11 @@ const date = document.querySelector("#fecha");
 const description = document.querySelector("#descripcion");
 const form = document.querySelector("#ingreso-form");
 const div = document.querySelector("#ingreso-div");
+const historialButton = document.querySelector("#ver-historial");
+const historialLista = document.querySelector("#historial-lista");
 
 const registro = new RegistroIngreso();
+const historial = [];
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -17,6 +20,31 @@ form.addEventListener("submit", (event) => {
 
     const nuevoIngreso = registro.anadirIngreso(monto, fecha, descripcion);
 
-    // Solo mostramos los valores directamente
-    div.innerHTML = "<p>Monto: " + nuevoIngreso.monto + " - Fecha: " + nuevoIngreso.fecha + " - Descripción: " + nuevoIngreso.descripcion + "</p>";
+    historial.push(nuevoIngreso);
+
+    div.innerHTML = `
+        <p><strong>Monto:</strong> ${nuevoIngreso.monto}</p>
+        <p><strong>Fecha:</strong> ${nuevoIngreso.fecha}</p>
+        <p><strong>Descripción:</strong> ${nuevoIngreso.descripcion}</p>
+    `;
+    // div.innerHTML = "<p>Monto: " + nuevoIngreso.monto + " - Fecha: " + nuevoIngreso.fecha + " - Descripción: " + nuevoIngreso.descripcion + "</p>";
+
 });
+
+    historialButton.addEventListener("click", () => {
+        historialLista.innerHTML = "";
+
+        historial.forEach((ingreso, index) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `
+                <p><strong>Ingreso ${index + 1}:</strong></p>
+                <p><strong>Monto:</strong> ${ingreso.monto}</p>
+                <p><strong>Fecha:</strong> ${ingreso.fecha}</p>
+                <p><strong>Descripción:</strong> ${ingreso.descripcion}</p>
+            `;
+            historialLista.appendChild(listItem);
+        });
+
+});
+
+
