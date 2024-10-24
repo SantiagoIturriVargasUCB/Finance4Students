@@ -34,3 +34,13 @@ describe("Registro de Gastos", () => {
     });
   });
 });
+
+describe("Historial de gastos", () => {
+  it("Deberia devolver la suma de los gastos: 200", () => {
+    const gasto1 = new Gasto("25/11/2023", "Compra comida", 100);
+    const gasto2 = new Gasto("30/10/2024", "Libros", 100);
+    expect(Gasto.devolverGastoTotal()).toEqual(200);
+  });
+
+  
+});
