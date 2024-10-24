@@ -1,16 +1,25 @@
-import { Gasto } from "../Gasto/Gasto";
-import { Ingreso } from "../Ingreso/ingreso";
+import { Ingreso } from "../Ingreso/Ingreso.js";
+import { Gasto } from "../Gasto/Gasto.js";
 
+describe("Cálculo de Saldo Total Disponible", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
 
-describe('Saldo Total Disponible', () => {
-  it('debería calcular correctamente el saldo total disponible', () => {
-    const registroIngresos = new Ingreso();
-    const totalIngresos = registroIngresos.getTotalIngresos();
-    
-    const totalGastos = Gasto.devolverGastoTotal();
-    
-    const saldoTotalDisponible = totalIngresos - totalGastos;
-    
-    expect(saldoTotalDisponible).toBeGreaterThanOrEqual(0);
+  it("debería calcular el saldo total cuando no hay ingresos ni gastos", () => {
+    document.body.innerHTML = '<div id="saldo-total"></div>';
+    cargarSaldoTotal();
+    expect(document.querySelector("#saldo-total").innerHTML).toBe("<h2>Saldo Total Disponible: Bs. 0.00</h2>");
+  });
+
+  it("debería calcular el saldo correctamente con ingresos y gastos", () => {
+    const ingreso1 = new Ingreso(1000, "2024-01-01", "Salario");
+    const gasto1 = new Gasto("2024-01-02", "Compra", 200);
+    ingreso1.anadirIngreso(1000, "2024-01-01", "Salario");
+    gasto1.registrarGasto();
+
+    document.body.innerHTML = '<div id="saldo-total"></div>';
+    cargarSaldoTotal();
+    expect(document.querySelector("#saldo-total").innerHTML).toBe("<h2>Saldo Total Disponible: Bs. 800.00</h2>");
   });
 });
