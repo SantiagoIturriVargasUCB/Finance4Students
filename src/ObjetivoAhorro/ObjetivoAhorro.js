@@ -1,4 +1,4 @@
-export class Objetivo{
+export class ObjetivoAhorro{
     constructor() {
         this.objs = []
     }
@@ -6,9 +6,8 @@ export class Objetivo{
     crearObjetivo(objName = "Vacaciones", mount = 1000, date = "01/11/2025") {
         // Verifica si el primer parámetro es un objeto, en cuyo caso lo desestructura
         let newObj;
-        if (typeof objName === 'object') {
-            newObj = objName;
-        } else {
+        if (typeof objName === 'object') newObj = objName;
+        else {
         newObj = {
             objName: objName,
             mount: mount,

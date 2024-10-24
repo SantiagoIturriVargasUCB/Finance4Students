@@ -1,8 +1,8 @@
-import { Objetivo } from "./objAhorro";
+import { ObjetivoAhorro } from "./ObjetivoAhorro";
 
 describe("Objetivo de Ahorro", () => {
     it("Debería devolver un objetivo con valores por defecto", () => {
-        const obj = new Objetivo();
+        const obj = new ObjetivoAhorro();
         expect(obj.crearObjetivo()).toEqual({
             objName: "Vacaciones",
             mount: 1000,
@@ -11,7 +11,7 @@ describe("Objetivo de Ahorro", () => {
     });
 
     it("Debería devolver un objetivo con parámetros variables", () => {
-        const obj = new Objetivo();
+        const obj = new ObjetivoAhorro();
         expect(obj.crearObjetivo("Vacaciones", 1000, "01/11/2025")).toEqual({
             objName: "Vacaciones",
             mount: 1000,
@@ -20,7 +20,7 @@ describe("Objetivo de Ahorro", () => {
     });
 
     it("Debería devolver un objetivo en formato de objeto", () => {
-        const obj = new Objetivo();
+        const obj = new ObjetivoAhorro();
         expect(obj.crearObjetivo("Vacaciones", 1000, "01/11/2025")).toEqual({
             objName: "Vacaciones",
             mount: 1000,
@@ -29,7 +29,7 @@ describe("Objetivo de Ahorro", () => {
     });
 
     it("Debería devolver un objetivo dado un objeto", () => {
-        const obj = new Objetivo();
+        const obj = new ObjetivoAhorro();
         const newObj = {
             objName: "Viaje",
             mount: 2000,
@@ -39,7 +39,7 @@ describe("Objetivo de Ahorro", () => {
     });
 
     it("Debería almacenar y mostrar los objetivos creados", () => {
-        const objs = new Objetivo();
+        const objs = new ObjetivoAhorro();
         const newObj = {
             objName: "Vacaciones",
             mount: 1000,
@@ -53,7 +53,7 @@ describe("Objetivo de Ahorro", () => {
     });
 
     it("Deberia poder crear y mostrar varios objetivos", () => {
-        const objs = new Objetivo();
+        const objs = new ObjetivoAhorro();
         const objNavidad = {
             objName: "Navidad",
             mount: 10000,

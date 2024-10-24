@@ -1,6 +1,6 @@
 describe("Crear Objetivo", () => {
     it("Debería mostrar el objetivo creado al usuario", () => {
-      cy.visit("/src/crearObjAhorro/objetivos.html");
+      cy.visit("/src/ObjetivoAhorro/objetivos.html");
   
       cy.get("#objName").type("Vacaciones");
       cy.get("#objMount").type(1500);
