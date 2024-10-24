@@ -1,29 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingresos - Finance4Students</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Ingresos</title>
 </head>
 <body>
-    <h1>Ingresos</h1>
-    <form id="ingreso-form">
-        <label for="monto">Monto:</label>
-        <input type="number" id="monto" />
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" />
-        <label for="descripcion">Descripcion:</label>
-        <input type="text" id="descripcion">
-        <input type="submit" value="Insertar" id="insert-button" />
-    </form><br>
+  <h1>Registrar Ingreso</h1>
 
-    <div id="ingreso-div"></div><br>
+  <form id="ingreso-form">
+    <label for="monto">Monto:</label>
+    <input type="number" id="monto" name="monto" required>
 
-    <h2>Historial de Ingresos</h2>
-    <button id="ver-historial">Ver</button>
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="fecha" required>
 
-    <ul id="historial-lista"></ul>
+    <label for="descripcion">Descripción:</label>
+    <input type="text" id="descripcion" name="descripcion" required>
 
-    <script type="module" src="./ingresos.js"></script>   
+    <button type="submit">Registrar Ingreso</button>
+  </form>
+
+  <!-- Mostrar el último ingreso registrado -->
+  <div id="ingreso-div"></div>
+
+  <!-- Mostrar el total de ingresos -->
+  <div id="total-ingresos">
+    <h2>Total de Ingresos: Bs. <span id="total-ingresos-valor">0</span></h2>
+  </div>
+
+  <!-- Botón para ver historial de ingresos -->
+  <button id="ver-historial">Ver Historial de Ingresos</button>
+  <ul id="historial-lista"></ul>
+
+  <script type="module" src="./ingresos.js"></script>
 </body>
 </html>

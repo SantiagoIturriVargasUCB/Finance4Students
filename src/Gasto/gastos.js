@@ -8,6 +8,9 @@ const resultadoDiv = document.querySelector("#resultado-div");
 const mostrarGastosButton = document.querySelector("#mostrar-gastos-button");
 const listaGastosDiv = document.querySelector("#lista-gastos-div");
 
+// Cargar el historial de gastos desde LocalStorage
+const historialGastos = JSON.parse(localStorage.getItem('gastos')) || [];
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -23,44 +26,46 @@ form.addEventListener("submit", (event) => {
   const nuevoGasto = new Gasto(fecha, descripcion, monto);
   const gastoRegistrado = nuevoGasto.registrarGasto();
 
+  // Guardar el nuevo gasto en LocalStorage y actualizar el saldo
+  historialGastos.push(gastoRegistrado);
+  localStorage.setItem('gastos', JSON.stringify(historialGastos));
+
   resultadoDiv.innerHTML = `
     <p>Último gasto registrado:</p>
     <p>Fecha: ${gastoRegistrado.fecha}</p>
     <p>Descripción: ${gastoRegistrado.descripcion}</p>
     <p>Monto: ${gastoRegistrado.monto}</p>
   `;
+
   form.reset();
 });
 
 mostrarGastosButton.addEventListener("click", () => {
-  console.log("Botón mostrar gastos clickeado");
-  const gastos = Gasto.obtenerGastos();
-  console.log("Gastos obtenidos:", gastos);
+  listaGastosDiv.innerHTML = "";
 
-  if (gastos.length === 0) {
-      listaGastosDiv.innerHTML = "<p>No hay gastos registrados.</p>";
-      return;
+  if (historialGastos.length === 0) {
+    listaGastosDiv.innerHTML = "<p>No hay gastos registrados.</p>";
+    return;
   }
 
   let listaHTML = "<h3>Lista de Todos los Gastos Registrados:</h3><ul>";
 
-  gastos.forEach((gasto) => {
-      listaHTML += `
-          <li>
-              Fecha: ${gasto.fecha}, Descripción: ${gasto.descripcion}, Monto: ${gasto.monto}
-          </li>
-      `;
+  historialGastos.forEach((gasto) => {
+    listaHTML += `
+        <li>
+            Fecha: ${gasto.fecha}, Descripción: ${gasto.descripcion}, Monto: ${gasto.monto}
+        </li>
+    `;
   });
 
   listaHTML += "</ul>";
   const gastoTotal = Gasto.devolverGastoTotal();
-  
+
   listaHTML += `
     <div style="margin-top: 20px; font-weight: bold;">
       <h3>Gasto Total: Bs. ${gastoTotal}</h3>
     </div>
   `;
 
-  
   listaGastosDiv.innerHTML = listaHTML;
 });

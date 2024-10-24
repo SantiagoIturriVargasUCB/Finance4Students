@@ -5,29 +5,25 @@ export class Gasto {
     this.monto = monto;
   }
 
-  static gastoTotal = 0;
-
-  static listaDeGastos = [];
-
   registrarGasto() {
-
-    Gasto.listaDeGastos.push(this);
-    Gasto.gastoTotal += this.monto;
-    return {
-      'fecha': this.fecha,
-      'descripcion': this.descripcion,
-      'monto': this.monto
+    const nuevoGasto = {
+      fecha: this.fecha,
+      descripcion: this.descripcion,
+      monto: this.monto,
     };
+
+    const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+
+    gastos.push(nuevoGasto);
+
+    localStorage.setItem('gastos', JSON.stringify(gastos));
+
+    return nuevoGasto;
   }
 
   static devolverGastoTotal() {
-    return Gasto.gastoTotal;
+    const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+    return gastos.reduce((total, gasto) => total + gasto.monto, 0);
   }
-
-  static obtenerGastos() {
-    return Gasto.listaDeGastos;
-  }
-
 }
-
 
