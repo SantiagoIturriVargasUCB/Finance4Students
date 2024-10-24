@@ -8,7 +8,6 @@ const resultadoDiv = document.querySelector("#resultado-div");
 const mostrarGastosButton = document.querySelector("#mostrar-gastos-button");
 const listaGastosDiv = document.querySelector("#lista-gastos-div");
 
-// Evento para registrar un gasto
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -30,6 +29,7 @@ form.addEventListener("submit", (event) => {
     <p>Descripción: ${gastoRegistrado.descripcion}</p>
     <p>Monto: ${gastoRegistrado.monto}</p>
   `;
+  form.reset();
 });
 
 mostrarGastosButton.addEventListener("click", () => {
