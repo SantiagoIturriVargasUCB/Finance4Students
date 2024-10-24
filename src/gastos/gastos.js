@@ -5,10 +5,11 @@ class Gasto {
     this.monto = monto;
   }
 
-  static gastoTotal = 200;
+  static gastoTotal = 0;
 
   registrarGasto() {
 
+    Gasto.gastoTotal = this.monto;
     return {
       'fecha': this.fecha,
       'descripcion': this.descripcion,
@@ -17,7 +18,7 @@ class Gasto {
   }
 
   static devolverGastoTotal() {
-    return 200;
+    return Gasto.gastoTotal;
   }
 
 }
