@@ -4,6 +4,7 @@ class RegistroIngreso {
         this.monto = monto;
         this.fecha = fecha;
         this.descripcion = descripcion;
+        this.totalIngresos= 0;
     }
 
     anadirMonto(monto) {
@@ -45,8 +46,13 @@ class RegistroIngreso {
         this.monto = monto;
         this.fecha = fecha;
         this.descripcion = descripcion;
+        this.totalIngresos += monto;
 
-        return {monto: this.monto, fecha: this.fecha, descripcion: this.descripcion };
+        return {monto: this.monto, fecha: this.fecha, descripcion: this.descripcion};
+    }
+
+    getTotalIngresos(){
+        return this.totalIngresos
     }
 }
 

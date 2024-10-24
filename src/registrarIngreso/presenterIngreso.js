@@ -11,7 +11,7 @@ const registro = new RegistroIngreso();
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const monto = Number(amount.value);  // Convertimos el monto a número
+    const monto = Number(amount.value);  
     const fecha = date.value;
     const descripcion = description.value;
 
