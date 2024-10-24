@@ -22,6 +22,6 @@ loginForm.addEventListener('submit', function(event) {
   const auth = new Auth();
   const isAuthenticated = auth.authenticate(email, password);
 
-  if (isAuthenticated) window.location.href = '../Dashboard/dashboard.html';
+  if (isAuthenticated) window.location.href = '../dashboard/dashboard.html';
   else document.getElementById('errorMessage').textContent = 'Invalid email or password';
 });
