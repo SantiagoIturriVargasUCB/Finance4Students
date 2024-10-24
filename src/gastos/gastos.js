@@ -7,8 +7,11 @@ class Gasto {
 
   static gastoTotal = 0;
 
+  static listaDeGastos = [];
+
   registrarGasto() {
 
+    Gasto.listaDeGastos.push(this);
     Gasto.gastoTotal += this.monto;
     return {
       'fecha': this.fecha,
@@ -19,6 +22,10 @@ class Gasto {
 
   static devolverGastoTotal() {
     return Gasto.gastoTotal;
+  }
+
+  static obtenerGastos() {
+    return Gasto.listaDeGastos;
   }
 
 }

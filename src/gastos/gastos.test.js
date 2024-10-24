@@ -38,6 +38,7 @@ describe("Registro de Gastos", () => {
 describe("Historial de gastos", () => {
   beforeEach(() => {
     Gasto.gastoTotal = 0;
+    Gasto.listaDeGastos = [];
   });
   it("Deberia devolver la suma de los gastos: 200", () => {
     const gasto1 = new Gasto("25/11/2023", "Compra comida", 200);
@@ -53,10 +54,18 @@ describe("Historial de gastos", () => {
 
   it("Deberia devolver la suma de los gastos: 500", () => {
     const gasto1 = new Gasto("09/09/2023", "Compra fruta", 500);
-    const gasto2 = new Gasto("20/09/2021", "Comopra libros", 100)
+    const gasto2 = new Gasto("20/09/2021", "Compra libros", 100)
     gasto1.registrarGasto();
     gasto2.registrarGasto();
     expect(Gasto.devolverGastoTotal()).toEqual(600);
+  });
+
+  it("Deberia devolver la suma de los gastos: 500", () => {
+    const gasto1 = new Gasto("09/09/2023", "Compra fruta", 500);
+    const gasto2 = new Gasto("20/09/2021", "Compra libros", 100)
+    gasto1.registrarGasto();
+    gasto2.registrarGasto();
+    expect(Gasto.obtenerGastos()).toEqual([{'fecha': "09/09/2023", 'descripcion': "Compra fruta", 'monto': 500}, {'fecha': "20/09/2021", 'descripcion': "Compra libros", 'monto': 100}]);
   });
 
   
