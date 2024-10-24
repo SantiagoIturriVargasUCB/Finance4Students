@@ -1,6 +1,6 @@
 describe("Ingresos", () => {
     it("Muestra el monto, fecha y decripcion de un ingreso", () => {
-        cy.visit("/src/registrarIngreso/registroIngreso.html");
+        cy.visit("/src/Ingreso/ingresos.html"); 
         cy.get("#monto").type(100);
         cy.get("#fecha").type("2004-10-27");
         cy.get("#descripcion").type("Ingreso de prueba"); 

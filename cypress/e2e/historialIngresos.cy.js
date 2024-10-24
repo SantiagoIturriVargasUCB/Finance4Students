@@ -1,7 +1,7 @@
 describe('Prueba del historial de ingresos', () => {
 
     it('Debería agregar un ingreso y mostrarlo en la lista', () => {
-        cy.visit("/src/registrarIngreso/registroIngreso.html"); 
+        cy.visit("/src/Ingreso/ingresos.html"); 
         cy.get('#monto').type(500);
         cy.get('#fecha').type("2024-10-23");
         cy.get('#descripcion').type("Sueldo");
@@ -12,7 +12,7 @@ describe('Prueba del historial de ingresos', () => {
     });
 
     it('Debería mostrar el historial de ingresos cuando se hace clic en "Ver Historial"', () => {
-        cy.visit("/src/registrarIngreso/registroIngreso.html"); 
+        cy.visit("/src/Ingreso/ingresos.html"); 
         cy.get('#monto').type(500);
         cy.get('#fecha').type("2024-10-23");
         cy.get('#descripcion').type("Sueldo");
