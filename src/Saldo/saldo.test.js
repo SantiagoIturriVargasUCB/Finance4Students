@@ -57,12 +57,12 @@ describe("Cálculo de Saldo Total Disponible", () => {
   });
 
   it("debería calcular el saldo correctamente con ingresos y gastos", () => {
-    const ingreso1 = new Ingreso(1000, "2024-01-01", "Salario");
+    const ingreso1 = new Ingreso("2024-01-01", "Salario", 1000);
     const gasto1 = new Gasto("2024-01-02", "Compra", 200);
 
     // Registrar los ingresos y gastos
-    ingreso1.anadirIngreso(1000, "2024-01-01", "Salario");
-    gasto1.registrarGasto();
+    ingreso1.registrarIngreso("2024-01-01", "Salario", 1000);
+    gasto1.registrarGasto("2024-01-02", "Compra", 200);
 
     // Ejecutar la función que calcula el saldo
     cargarSaldoTotal();

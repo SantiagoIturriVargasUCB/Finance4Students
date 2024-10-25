@@ -1,27 +1,32 @@
-describe('Prueba del historial de ingresos', () => {
+describe("Historial Ingresos", () => {
+    it("Muestra varios ingresos registrados correctamente", () => {
+        cy.visit("/src/Ingreso/ingresos.html");
 
-    it('Debería agregar un ingreso y mostrarlo en la lista', () => {
-        cy.visit("/src/Ingreso/ingresos.html"); 
-        cy.get('#monto').type(500);
-        cy.get('#fecha').type("2024-10-23");
-        cy.get('#descripcion').type("Sueldo");
-        cy.get('#insert-button').click();
-        cy.get('#ingreso-div').should('contain', 500)
-        .and('contain', "2024-10-23")
-        .and('contain', "Sueldo");
-    });
+        // Registrar primer ingreso
+        cy.get("#monto").type(1000);
+        cy.get("#fecha").type("2023-12-20");
+        cy.get("#descripcion").type("Venta de productos");
+        cy.get("#registrar-button").click();
 
-    it('Debería mostrar el historial de ingresos cuando se hace clic en "Ver Historial"', () => {
-        cy.visit("/src/Ingreso/ingresos.html"); 
-        cy.get('#monto').type(500);
-        cy.get('#fecha').type("2024-10-23");
-        cy.get('#descripcion').type("Sueldo");
-        cy.get('#insert-button').click();
+        // Registrar segundo ingreso
+        cy.get("#monto").type(200);
+        cy.get("#fecha").type("2024-01-10");
+        cy.get("#descripcion").type("Servicios");
+        cy.get("#registrar-button").click();
 
-        cy.get('#ver-historial').click();
+        // Registrar tercer ingreso
+        cy.get("#monto").type(150);
+        cy.get("#fecha").type("2024-02-15");
+        cy.get("#descripcion").type("Consultoría");
+        cy.get("#registrar-button").click();
 
-        cy.get('#historial-lista').should('contain', 500)
-        .and('contain', "2024-10-23")
-        .and('contain', "Sueldo");
+        // Hacer clic en "Ver Historial"
+        cy.get("#ver-historial").click();
+
+        // Verificar que el historial de ingresos se muestra correctamente
+        cy.get("#historial-lista")
+            .should("contain", "Venta de productos").and("contain", 1000).and("contain", "2023-12-20")
+            .and("contain", "Servicios").and("contain", 200).and("contain", "2024-01-10")
+            .and("contain", "Consultoría").and("contain", 150).and("contain", "2024-02-15");
     });
 });
