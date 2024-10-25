@@ -1,6 +1,6 @@
-describe('Login Functionality - Finance4Students', () => {
+describe('Login Functionality - Finance4Students', () => {  
   beforeEach(() => {
-    cy.visit('/src/LogIn/login.html'); 
+    cy.visit('/src/LogIn/login.html');   // Asegúrate de que la ruta sea correcta
   });
 
   // Caso 1: Log in exitoso con credenciales válidas
@@ -9,7 +9,7 @@ describe('Login Functionality - Finance4Students', () => {
     cy.get('input[name="password"]').type('ValidPassword123');
     cy.get('button[type="submit"]').click();
 
-    cy.url().should('include', '/dashboard/dashboard.html');
+    cy.url().should('include', '/Dashboard/dashboard.html');
   });
 
   // Caso 2: Mostrar mensaje de error con credenciales inválidas
@@ -23,6 +23,7 @@ describe('Login Functionality - Finance4Students', () => {
 
   // Caso 3: Simular envío con campos vacíos (deshabilitando validación HTML)
   it('should show error message when fields are empty', () => {
+    
     // Deshabilitar la validación del navegador
     cy.get('input[name="email"]').invoke('removeAttr', 'required');
     cy.get('input[name="password"]').invoke('removeAttr', 'required');

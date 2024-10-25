@@ -1,6 +1,7 @@
 #### Para instalar las dependencias:
 
 npm install
+npm ci 
 
 #### Comandos de uso:
 

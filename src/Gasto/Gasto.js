@@ -25,5 +25,12 @@ export class Gasto {
     const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
     return gastos.reduce((total, gasto) => total + gasto.monto, 0);
   }
-}
 
+  static obtenerGastos() {
+    return JSON.parse(localStorage.getItem('gastos')) || [];
+  }
+
+  static limpiarGastos() {
+    localStorage.removeItem('gastos');
+  }
+}
