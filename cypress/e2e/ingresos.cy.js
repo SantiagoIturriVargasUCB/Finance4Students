@@ -15,10 +15,13 @@ describe("Registrar Ingresos", () => {
     cy.contains("a", "Registro de Ingresos").should("exist").click();
     cy.url().should("include", "/src/Ingreso/ingresos.html");
 
-    cy.get("#monto").type(100);
-    cy.get("#fecha").type("2004-10-27");
-    cy.get("#descripcion").type("Ingreso de prueba");
-    cy.get("#registrar-button").click();
+    // Verificar la existencia de los campos antes de interactuar
+    cy.get("#monto").should("exist").type(100);
+    cy.get("#fecha").should("exist").type("2004-10-27");
+    cy.get("#descripcion").should("exist").type("Ingreso de prueba");
+
+    // Verificar la existencia del botón antes de hacer clic
+    cy.get("#registrar-button").should("exist").click();
 
     // Verificar que el ingreso registrado se muestre correctamente
     cy.get("#ingreso-div")
@@ -33,12 +36,12 @@ describe("Registrar Ingresos", () => {
     cy.url().should("include", "/src/Ingreso/ingresos.html");
 
     // Registrar el primer ingreso
-    cy.get("#monto").type(150);
-    cy.get("#fecha").type("2024-01-15");
-    cy.get("#descripcion").type("Pago de salario");
-    cy.get("#registrar-button").click();
+    cy.get("#monto").should("exist").type(150);
+    cy.get("#fecha").should("exist").type("2024-01-15");
+    cy.get("#descripcion").should("exist").type("Pago de salario");
+    cy.get("#registrar-button").should("exist").click();
 
-    // Verificar que el ingreso registrado se muestre correctamente
+    // Verificar que los datos del ingreso registrado se muestren correctamente
     cy.get("#ingreso-div")
       .should("contain", "150")
       .and("contain", "2024-01-15")

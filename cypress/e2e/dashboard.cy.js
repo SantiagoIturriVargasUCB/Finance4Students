@@ -12,17 +12,17 @@ describe('Dashboard Functionality', () => {
 
   // Caso 1: Verificar que el dashboard muestra el mensaje de bienvenida correcto
   it('should display the correct welcome message', () => {
-    cy.get('h1').should('contain', 'Welcome, validuser@example.com!');
+    cy.get('h1').should('contain', 'Welcome, validuser@example.com!'); // Verifica el contenido exacto
   });
 
   // Caso 2: Verificar que el botón de logout existe
   it('should have a logout button', () => {
-    cy.get('#logoutBtn').should('exist');
+    cy.get('#logoutBtn').should('exist'); // Verifica la existencia del botón
   });
 
   // Caso 3: Simular el clic en logout y redirigir a la página de login
   it('should redirect to login after clicking logout', () => {
-    cy.get('#logoutBtn').click();
-    cy.url().should('include', '/LogIn/login.html');
+    cy.get('#logoutBtn').should('exist').click();
+    cy.url().should('include', '/src/LogIn/login.html');
   });
 });

@@ -12,26 +12,26 @@ describe("Historial Ingresos", () => {
 
   it("Muestra varios ingresos registrados correctamente", () => {
     // Hacer clic en el enlace "Registro de Ingresos" en el Dashboard
-    cy.contains("a", "Registro de Ingresos").click();
+    cy.contains("a", "Registro de Ingresos").should("exist").click();
     cy.url().should("include", "/src/Ingreso/ingresos.html");
 
     // Registrar primer ingreso
-    cy.get("#monto").type(1000);
-    cy.get("#fecha").type("2023-12-20");
-    cy.get("#descripcion").type("Venta de productos");
-    cy.get("#registrar-button").click();
+    cy.get("#monto").should("exist").type(1000);
+    cy.get("#fecha").should("exist").type("2023-12-20");
+    cy.get("#descripcion").should("exist").type("Venta de productos");
+    cy.get("#registrar-button").should("exist").click();
 
     // Registrar segundo ingreso
-    cy.get("#monto").type(200);
-    cy.get("#fecha").type("2024-01-10");
-    cy.get("#descripcion").type("Servicios");
-    cy.get("#registrar-button").click();
+    cy.get("#monto").should("exist").type(200);
+    cy.get("#fecha").should("exist").type("2024-01-10");
+    cy.get("#descripcion").should("exist").type("Servicios");
+    cy.get("#registrar-button").should("exist").click();
 
     // Registrar tercer ingreso
-    cy.get("#monto").type(150);
-    cy.get("#fecha").type("2024-02-15");
-    cy.get("#descripcion").type("Consultoría");
-    cy.get("#registrar-button").click();
+    cy.get("#monto").should("exist").type(150);
+    cy.get("#fecha").should("exist").type("2024-02-15");
+    cy.get("#descripcion").should("exist").type("Consultoría");
+    cy.get("#registrar-button").should("exist").click();
 
     // Mostrar el historial de ingresos
     cy.get("#ver-historial").should("exist").click();

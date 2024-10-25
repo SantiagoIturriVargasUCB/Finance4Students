@@ -12,24 +12,24 @@ describe("Historial Gastos", () => {
 
   it("Muestra el monto necesario", () => {
     // Hacer clic en el enlace "Registro de Gastos" en el Dashboard
-    cy.contains("a", "Registro de Gastos").click();
+    cy.contains("a", "Registro de Gastos").should("exist").click();
     cy.url().should("include", "/src/Gasto/gastos.html");
 
     // Registrar múltiples gastos
-    cy.get("#fecha").type("2021-12-21");
-    cy.get("#descripcion").type("Libros");
-    cy.get("#monto").type(500);
-    cy.get("#registrar-button").click();
+    cy.get("#fecha").should("exist").type("2021-12-21");
+    cy.get("#descripcion").should("exist").type("Libros");
+    cy.get("#monto").should("exist").type(500);
+    cy.get("#registrar-button").should("exist").click();
 
-    cy.get("#fecha").type("2022-01-10");
-    cy.get("#descripcion").type("Comida");
-    cy.get("#monto").type(60);
-    cy.get("#registrar-button").click();
+    cy.get("#fecha").should("exist").type("2022-01-10");
+    cy.get("#descripcion").should("exist").type("Comida");
+    cy.get("#monto").should("exist").type(60);
+    cy.get("#registrar-button").should("exist").click();
 
-    cy.get("#fecha").type("2023-01-09");
-    cy.get("#descripcion").type("Bebida");
-    cy.get("#monto").type(70);
-    cy.get("#registrar-button").click();
+    cy.get("#fecha").should("exist").type("2023-01-09");
+    cy.get("#descripcion").should("exist").type("Bebida");
+    cy.get("#monto").should("exist").type(70);
+    cy.get("#registrar-button").should("exist").click();
 
     // Mostrar el historial de gastos
     cy.get("#mostrar-gastos-button").should("exist").click();
