@@ -1,17 +1,17 @@
 describe("Historial Ingresos", () => {
-  it("Muestra varios ingresos registrados correctamente", () => {
-    // Visita la página de login
-    cy.visit("/src/LogIn/login.html");
-
-    // Llenar el formulario de inicio de sesión
-    cy.get('input[name="email"]').type("validuser@example.com");
-    cy.get('input[name="password"]').type("ValidPassword123");
-
-    // Enviar el formulario y verificar la redirección al Dashboard
+  beforeEach(() => {
+    // Limpiar localStorage antes de cada prueba
+    cy.clearLocalStorage();
+    // Iniciar sesión antes de visitar el Dashboard
+    cy.visit('/src/LogIn/login.html');
+    cy.get('input[name="email"]').type('validuser@example.com');
+    cy.get('input[name="password"]').type('ValidPassword123');
     cy.get('button[type="submit"]').click();
-    cy.url().should("include", "/Dashboard/dashboard.html");
+    cy.url().should('include', '/Dashboard/dashboard.html');
+  });
 
-    // Hacer clic en el enlace "Registro de Gastos" en el Dashboard
+  it("Muestra varios ingresos registrados correctamente", () => {
+    // Hacer clic en el enlace "Registro de Ingresos" en el Dashboard
     cy.contains("a", "Registro de Ingresos").click();
     cy.url().should("include", "/src/Ingreso/ingresos.html");
 
@@ -33,8 +33,8 @@ describe("Historial Ingresos", () => {
     cy.get("#descripcion").type("Consultoría");
     cy.get("#registrar-button").click();
 
-    // Hacer clic en "Ver Historial"
-    cy.get("#ver-historial").click();
+    // Mostrar el historial de ingresos
+    cy.get("#ver-historial").should("exist").click();
 
     // Verificar que el historial de ingresos se muestra correctamente
     cy.get("#historial-lista")

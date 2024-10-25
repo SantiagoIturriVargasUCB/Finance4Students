@@ -1,24 +1,24 @@
 describe("Registrar Ingresos", () => {
-  it("Muestra el monto, fecha y descripción de un ingreso", () => {
-    // Visita la página de login
-    cy.visit("/src/LogIn/login.html");
-
-    // Llenar el formulario de inicio de sesión
-    cy.get('input[name="email"]').type("validuser@example.com");
-    cy.get('input[name="password"]').type("ValidPassword123");
-
-    // Enviar el formulario y verificar la redirección al Dashboard
+  beforeEach(() => {
+    // Limpiar localStorage antes de cada prueba
+    cy.clearLocalStorage();
+    // Iniciar sesión antes de visitar el Dashboard
+    cy.visit('/src/LogIn/login.html');
+    cy.get('input[name="email"]').type('validuser@example.com');
+    cy.get('input[name="password"]').type('ValidPassword123');
     cy.get('button[type="submit"]').click();
-    cy.url().should("include", "/Dashboard/dashboard.html");
-
-    // Hacer clic en el enlace "Registro de Gastos" en el Dashboard
-    cy.contains("a", "Registro de Ingresos").click();
+    cy.url().should('include', '/Dashboard/dashboard.html');
+  });
+  
+  it("Muestra el monto, fecha y descripción de un ingreso", () => {
+    // Hacer clic en el enlace "Registro de Ingresos" en el Dashboard
+    cy.contains("a", "Registro de Ingresos").should("exist").click();
     cy.url().should("include", "/src/Ingreso/ingresos.html");
 
     cy.get("#monto").type(100);
     cy.get("#fecha").type("2004-10-27");
     cy.get("#descripcion").type("Ingreso de prueba");
-    cy.get("#registrar-button").click(); // Usamos el mismo ID que en Gastos
+    cy.get("#registrar-button").click();
 
     // Verificar que el ingreso registrado se muestre correctamente
     cy.get("#ingreso-div")
@@ -28,11 +28,15 @@ describe("Registrar Ingresos", () => {
   });
 
   it("Muestra los datos de múltiples ingresos registrados", () => {
-    cy.visit("/src/Ingreso/ingresos.html");
+    // Hacer clic en el enlace "Registro de Ingresos" en el Dashboard
+    cy.contains("a", "Registro de Ingresos").should("exist").click();
+    cy.url().should("include", "/src/Ingreso/ingresos.html");
+
+    // Registrar el primer ingreso
     cy.get("#monto").type(150);
     cy.get("#fecha").type("2024-01-15");
     cy.get("#descripcion").type("Pago de salario");
-    cy.get("#registrar-button").click(); // Usamos el mismo ID que en Gastos
+    cy.get("#registrar-button").click();
 
     // Verificar que el ingreso registrado se muestre correctamente
     cy.get("#ingreso-div")

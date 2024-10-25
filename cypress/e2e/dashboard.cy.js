@@ -1,13 +1,14 @@
 describe('Dashboard Functionality', () => {
   beforeEach(() => {
+    // Limpiar localStorage antes de cada prueba
+    cy.clearLocalStorage();
     // Iniciar sesión antes de visitar el Dashboard
-    cy.visit('/src/LogIn/login.html'); // Ruta correcta al formulario de login
+    cy.visit('/src/LogIn/login.html');
     cy.get('input[name="email"]').type('validuser@example.com');
     cy.get('input[name="password"]').type('ValidPassword123');
     cy.get('button[type="submit"]').click();
-    cy.url().should('include', '/Dashboard/dashboard.html'); // Asegúrate de que llegue al Dashboard
+    cy.url().should('include', '/Dashboard/dashboard.html');
   });
-
 
   // Caso 1: Verificar que el dashboard muestra el mensaje de bienvenida correcto
   it('should display the correct welcome message', () => {
