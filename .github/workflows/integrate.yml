@@ -32,8 +32,10 @@ jobs:
       - name: Run E2E Tests
         uses: cypress-io/github-action@v4
         with:
-          start: npm run start
-          wait-on: "http://localhost:1234"
+          start: npm run start  # Comando para iniciar el servidor
+          wait-on: http://localhost:1234  # URL para esperar que el servidor esté listo
+          browser: chrome  # (Opcional) Especifica el navegador si no deseas usar Electron
+          
 
       #- name: Build for deploy
       #  run: npm run build
